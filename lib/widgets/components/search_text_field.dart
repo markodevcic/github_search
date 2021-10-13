@@ -57,7 +57,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
                   ? TextButton(
                       child: const Icon(
                         Icons.clear,
-                        color: Colors.white54,
+                        color: Colors.white38,
                       ),
                       onPressed: () {
                         controller.clear();
@@ -68,7 +68,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
                   : null,
               suffixIcon: (showTextFieldIcons)
                   ? TextButton(
-                      child: const Icon(Icons.search, color: Colors.white54),
+                      child: const Icon(Icons.search, color: Colors.white38),
                       onPressed: () {
                         searchText = text;
                         Navigator.of(context).pushNamedAndRemoveUntil(
