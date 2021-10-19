@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserDetailsPage extends StatelessWidget {
   UserDetailsPage(
@@ -7,19 +8,37 @@ class UserDetailsPage extends StatelessWidget {
       required this.ownerName,
       required this.name,
       required this.lastUpdate,
-      required this.description})
+      required this.description,
+      required this.repoUrl,
+      required this.userUrl})
       : super(key: key);
   String avatar;
   String ownerName;
   String name;
   String lastUpdate;
   String description;
+  String repoUrl;
+  String userUrl;
+
+  launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ownerName),
+        title: InkWell(
+          child: Text(ownerName),
+          onTap: () {
+            print(userUrl);
+            launchUrl(userUrl);
+          },
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -36,12 +55,18 @@ class UserDetailsPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Text(
-              name,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: TextStyle(fontSize: 26, color: Colors.grey.shade50),
+            child: InkWell(
+              onTap: () {
+                print(repoUrl);
+                launchUrl(repoUrl);
+              },
+              child: Text(
+                name,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(fontSize: 26, color: Colors.grey.shade50),
+              ),
             ),
           ),
           Padding(

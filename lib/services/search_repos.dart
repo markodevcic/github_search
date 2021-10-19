@@ -22,7 +22,9 @@ class Search {
             description: i['description'] ?? '',
             lastUpdate: i['updated_at'],
             avatar: i['owner']['avatar_url'],
-            ownerName: i['owner']['login']);
+            ownerName: i['owner']['login'],
+            repoUrl: i['html_url'],
+            userUrl: i['owner']['html_url']);
 
         items.add(item);
       }
@@ -62,7 +64,9 @@ class Search {
             description: i['description'] ?? '',
             lastUpdate: i['updated_at'],
             avatar: i['owner']['avatar_url'],
-            ownerName: i['owner']['login']);
+            ownerName: i['owner']['login'],
+            repoUrl: i['html_url'],
+            userUrl: i['owner']['html_url']);
         items.add(item);
       }
       (pageNumber == totalPages) ? hasNextPage = false : hasNextPage = true;

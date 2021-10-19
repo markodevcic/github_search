@@ -9,8 +9,8 @@ class ListCard extends StatelessWidget {
   ListCard({Key? key, required this.index, required this.dataModel})
       : super(key: key);
 
-  int index;
-  List<DataModel> dataModel;
+  final int index;
+  final List<DataModel> dataModel;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +53,8 @@ class ListCard extends StatelessWidget {
                         name: dataModel[index].name,
                         lastUpdate: lastUpdated,
                         description: dataModel[index].description,
+                        repoUrl: dataModel[index].repoUrl,
+                        userUrl: dataModel[index].userUrl,
                       )));
         },
       ),
