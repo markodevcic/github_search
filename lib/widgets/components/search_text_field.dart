@@ -1,13 +1,10 @@
 import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
-
-import 'package:github_search/widgets/list_page.dart';
 import 'package:github_search/globals.dart';
+import 'package:github_search/widgets/list_page.dart';
 
 class SearchTextField extends StatefulWidget {
-  SearchTextField({Key? key, required this.showSearchTextField})
-      : super(key: key);
-  bool showSearchTextField;
+  SearchTextField({super.key});
 
   @override
   State<SearchTextField> createState() => _SearchTextFieldState();
@@ -26,9 +23,6 @@ class _SearchTextFieldState extends State<SearchTextField> {
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: AutoSizeTextField(
           controller: controller,
-          onTap: () {
-            widget.showSearchTextField = true;
-          },
           onChanged: (value) {
             (value.isEmpty)
                 ? showTextFieldIcons = false
@@ -40,7 +34,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
           textAlign: TextAlign.center,
           fullwidth: false,
           minWidth: 10,
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headlineMedium,
           decoration: InputDecoration(
               label: const Center(
                   child: Text('Search GitHub', textAlign: TextAlign.center)),

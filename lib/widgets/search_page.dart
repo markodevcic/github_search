@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:github_search/widgets/components/search_text_field.dart';
 
 class SearchPage extends StatelessWidget {
-  SearchPage({Key? key}) : super(key: key);
+  SearchPage({super.key});
 
   static const String id = 'SearchPage';
-  bool showSearchTextField = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // focus on searchTextField or outside of it
-        FocusScope.of(context).unfocus();
-        showSearchTextField = false;
+        primaryFocus?.unfocus();
       },
       child: Scaffold(
         appBar:
@@ -34,7 +31,7 @@ class SearchPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SearchTextField(showSearchTextField: showSearchTextField),
+                  SearchTextField(),
                 ],
               ),
             ),

@@ -2,27 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserDetailsPage extends StatelessWidget {
-  UserDetailsPage(
-      {Key? key,
+  const UserDetailsPage(
+      {super.key,
       required this.avatar,
       required this.ownerName,
       required this.name,
       required this.lastUpdate,
       required this.description,
       required this.repoUrl,
-      required this.userUrl})
-      : super(key: key);
-  String avatar;
-  String ownerName;
-  String name;
-  String lastUpdate;
-  String description;
-  String repoUrl;
-  String userUrl;
+      required this.userUrl});
+  final String avatar;
+  final String ownerName;
+  final String name;
+  final String lastUpdate;
+  final String description;
+  final String repoUrl;
+  final String userUrl;
 
-  launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+  launch(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
     } else {
       throw 'Could not launch $url';
     }
@@ -36,7 +35,7 @@ class UserDetailsPage extends StatelessWidget {
           child: Text(ownerName),
           onTap: () {
             print(userUrl);
-            launchUrl(userUrl);
+            launch(userUrl);
           },
         ),
         centerTitle: true,
@@ -58,7 +57,7 @@ class UserDetailsPage extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 print(repoUrl);
-                launchUrl(repoUrl);
+                launch(repoUrl);
               },
               child: Text(
                 name,
